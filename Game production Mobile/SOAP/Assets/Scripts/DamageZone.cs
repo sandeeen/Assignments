@@ -5,14 +5,14 @@ using TMPro;
 
 public class DamageZone : MonoBehaviour
 {
-    float currentLives;
+    bool isAlive;
     [SerializeField] GameObject player;
     [SerializeField] TextMeshProUGUI livesText;
-
+    
 
     private void Start()
     {
-        livesText.text = " LIVES : III";
+        livesText.text = "LIVES : III";
     }
 
     private void OnTriggerEnter2D(Collider2D other)

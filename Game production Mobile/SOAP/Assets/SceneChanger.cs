@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-public class SoundManager : MonoBehaviour
+public class SceneChanger : MonoBehaviour
 {
-    public static SoundManager Instance;
+    public static SceneChanger Instance;
 
-    [SerializeField] AudioSource effectSources;
-
-
-    //Singleton instance 
     private void Awake()
     {
         if (Instance == null)
@@ -22,14 +18,16 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
     }
 
-    public void PlayAudio(AudioClip clip)
+    public void ChangeSceneToMenu()
     {
-        effectSources.PlayOneShot(clip);
+        SceneManager.LoadScene("Menu");
     }
-
    
+    public void ChangeSceneToMainGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }
-

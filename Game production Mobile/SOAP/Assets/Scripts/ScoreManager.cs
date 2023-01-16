@@ -20,13 +20,18 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+       
 
     }
 
     public void AddScore(float scoreAdded)
     {
         currentScore += scoreAdded;
-        scoreText.text = "SCORE : "  + currentScore;
+        scoreText.text = "SCORE : " + currentScore;
+    }
+
+    public float GetScore()
+    {
+        return currentScore;
     }
 }
