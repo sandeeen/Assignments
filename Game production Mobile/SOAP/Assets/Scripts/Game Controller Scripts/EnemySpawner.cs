@@ -1,28 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum DifficultyStates
 {
-    Easy,
-    Medium,
-    Hard,
-    Insane
+    EASY,
+    MEDIUM,
+    HARD,
+    INSANE
 }
 
 public class EnemySpawner : MonoBehaviour
 {
-
+    [SerializeField] TextMeshProUGUI difficultyTMP; 
     [SerializeField] List<GameObject> EnemyList;
-   [SerializeField] GameObject[] spawnPoints;
-   public bool KeepSpawning = true;
+    [SerializeField] GameObject[] spawnPoints;
+
+    public bool KeepSpawning = true;
     private float timer;
     private float difficultyTimer;
-    DifficultyStates currentDifficulty = DifficultyStates.Easy;
+
+    DifficultyStates currentDifficulty = DifficultyStates.EASY;
 
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        
     }
 
     void Update()
@@ -33,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
         {
             CheckDifficulty();
         }
+        difficultyTMP.text = "DIFFICULTY: " + currentDifficulty;
     }
 
     IEnumerator SpawnEnemies()
@@ -44,16 +49,16 @@ public class EnemySpawner : MonoBehaviour
 
             switch (currentDifficulty)
             {
-                case DifficultyStates.Easy:
+                case DifficultyStates.EASY:
                     spawnRate = 1f;
                     break;
-                case DifficultyStates.Medium:
+                case DifficultyStates.MEDIUM:
                     spawnRate = 0.75f;
                     break;
-                case DifficultyStates.Hard:
+                case DifficultyStates.HARD:
                     spawnRate = 0.5f;
                     break;
-                case DifficultyStates.Insane:
+                case DifficultyStates.INSANE:
                     spawnRate = 0.25f;
                     break;
             }
@@ -71,25 +76,25 @@ public class EnemySpawner : MonoBehaviour
     {
         switch (currentDifficulty)
         {
-            case DifficultyStates.Easy:
+            case DifficultyStates.EASY:
                 if (timer >= 30f)
                 {
-                    currentDifficulty = DifficultyStates.Medium;
+                    currentDifficulty = DifficultyStates.MEDIUM;
                 }
                 break;
-            case DifficultyStates.Medium:
+            case DifficultyStates.MEDIUM:
                 if (timer >= 60f)
                 {
-                    currentDifficulty = DifficultyStates.Hard;
+                    currentDifficulty = DifficultyStates.HARD;
                 }
                 break;
-            case DifficultyStates.Hard:
+            case DifficultyStates.HARD:
                 if (timer >= 90f)
                 {
-                    currentDifficulty = DifficultyStates.Insane;
+                    currentDifficulty = DifficultyStates.INSANE;
                 }
                 break;
-            case DifficultyStates.Insane:
+            case DifficultyStates.INSANE:
                 //Do something special
                 break;
         }

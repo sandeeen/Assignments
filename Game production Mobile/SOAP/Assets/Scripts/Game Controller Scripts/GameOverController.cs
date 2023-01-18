@@ -33,6 +33,8 @@ public class GameOverController : MonoBehaviour
         if (finalScore > PlayerPrefs.GetFloat(FINAL_SCORE_NAME_KEY))
         {
             PlayerPrefs.SetFloat(FINAL_SCORE_NAME_KEY, finalScore);
+            SaveManager.Instance.Save(finalScore);
+            SaveManager.Instance.Load();
         }
 
         enemySpawner.KeepSpawning = false;
