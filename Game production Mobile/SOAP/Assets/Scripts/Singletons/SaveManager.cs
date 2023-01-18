@@ -37,7 +37,7 @@ public class SaveManager : MonoBehaviour
     public void Load()
     {
         //Get the saved jsonString
-        string jsonString = LoadFromFile("savedata.jpg");
+        string jsonString = LoadFromFile("savedata.json");
 
         Debug.Log(jsonString);
 

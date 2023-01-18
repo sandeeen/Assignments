@@ -17,6 +17,7 @@ public class GameOverController : MonoBehaviour
     
     void Start()
     {
+       // PlayerPrefs.DeleteAll();
         enemySpawner = gameObject.GetComponent<EnemySpawner>();
         globalLight2D = GameObject.Find("Global Light 2D").GetComponent<Light2D>();
         visableFinalScore = PlayerPrefs.GetFloat(FINAL_SCORE_NAME_KEY);
@@ -24,6 +25,7 @@ public class GameOverController : MonoBehaviour
 
    public  void StartIsGameOver()
     {
+       
         StartCoroutine(GameIsOver());
     }
 
@@ -34,7 +36,7 @@ public class GameOverController : MonoBehaviour
         {
             PlayerPrefs.SetFloat(FINAL_SCORE_NAME_KEY, finalScore);
             SaveManager.Instance.Save(finalScore);
-            SaveManager.Instance.Load();
+            
         }
 
         enemySpawner.KeepSpawning = false;
